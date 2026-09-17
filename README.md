@@ -12,21 +12,20 @@
 
 ## Cara Install (Laragon)
 
-1. **Copy folder project**
+1. Copy folder project
    Copy seluruh folder `perpustakaan-app` ke `C:\laragon\www\`
 
-2. **Import ulang database**
+2. **Import database**
    - Buka phpMyAdmin (`localhost/phpmyadmin`)
-   - **Install baru (belum pernah import sebelumnya):** import `database/perpustakaan_fixed.sql` (akan DROP & buat ulang database `perpustakaan` lengkap dengan kolom foto & sinopsis)
-   - **Sudah pernah import & ada data yang mau dipertahankan:** jangan import `perpustakaan_fixed.sql` lagi (nanti data hilang). Cukup buka tab **SQL** di phpMyAdmin, lalu jalankan isi file `database/migrasi_detail_buku.sql` — ini cuma nambah kolom `foto` dan `sinopsis` tanpa menghapus data yang sudah ada.
+   - import `database/perpustakaan_fixed.sql`
 
-3. **Pastikan folder upload bisa ditulis**
+3. Pastikan folder upload bisa ditulis
    Folder `assets/uploads/buku/` dipakai buat nyimpen foto sampul yang di-upload. Di Laragon (Windows) biasanya otomatis writable, tapi kalau upload gagal, cek permission folder tersebut.
 
-4. **Cek konfigurasi koneksi**
+4. Cek konfigurasi koneksi
    Buka `config/koneksi.php`, sesuaikan kalau username/password MySQL kamu bukan default Laragon (`root` / kosong).
 
-5. **Jalankan**
+5. Jalankan
    - Start Laragon
    - Buka browser ke `http://perpustakaan-app.test/` (Laragon otomatis bikin domain dari nama folder) atau `http://localhost/perpustakaan-app/`
 
@@ -49,9 +48,3 @@ perpustakaan-app/
 ├── anggota_list.php
 ├── peminjaman_list.php / peminjaman_tambah.php / peminjaman_kembalikan.php
 ```
-
-## Catatan buat laporan tugas
-- Query database pakai **PDO + prepared statement** (aman dari SQL Injection)
-- Password di-hash pakai `password_hash()` / diverifikasi pakai `password_verify()`
-- Transaksi database (`beginTransaction`/`commit`/`rollBack`) dipakai di proses peminjaman & pengembalian supaya data buku & stok selalu konsisten
-- Denda dihitung otomatis: Rp1.000 per hari keterlambatan (bisa diubah di `peminjaman_kembalikan.php`, variabel `$DENDA_PER_HARI`)
