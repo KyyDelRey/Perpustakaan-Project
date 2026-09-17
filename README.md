@@ -13,20 +13,20 @@
 
 ## Cara Install (Laragon)
 
-1. **Copy folder project**
+1. Copy folder project
    Copy seluruh folder `perpustakaan-app` ke `C:\laragon\www\`
 
 2. **Import database**
    - Buka phpMyAdmin (`localhost/phpmyadmin`)
    - import `database/perpustakaan_fixed.sql`
 
-3. **Pastikan folder upload bisa ditulis**
+3. Pastikan folder upload bisa ditulis
    Folder `assets/uploads/buku/` dipakai buat nyimpen foto sampul yang di-upload. Di Laragon (Windows) biasanya otomatis writable, tapi kalau upload gagal, cek permission folder tersebut.
 
-4. **Cek konfigurasi koneksi**
+4. Cek konfigurasi koneksi
    Buka `config/koneksi.php`, sesuaikan kalau username/password MySQL kamu bukan default Laragon (`root` / kosong).
 
-5. **Jalankan**
+5. Jalankan
    - Start Laragon
    - Buka browser ke `http://perpustakaan-app.test/`
 
